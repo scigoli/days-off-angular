@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+      <p style="padding:20px;"></p>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+           <ul class="breadcrumb">
+               <li><a href="index.html">Home</a></li>
+               <li class="active">Employees</li>
+           </ul>
+        </div>
+        <div class="col-xs-12">
+           <h3>All Employees</h3>
+           <hr>
+        </div>
+    </div>
+    <div class="row row-content">
+       <ul class="media-list tab-pane fade in active">
+            <li ng-repeat="employee in employees" >
+                <div class="row row-content">
+                  <div class="col-xs-12">
+                    <div class="media-left media-middle">
+                      <a ui-sref="app.employees">
+                        <img class="media-object img-thumbnail " width="100"
+                        ng-src={{getImage(employee.IsManager)}} alt="User">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{employee.username}}</h2>
+                        <p>Email: {{employee.email}}</p>
+                        <p>Department: {{employee.DepartmentId}}</p>
+                        <span class="label label-danger label-xs">{{getLabel(employee.IsManager)}}</span>
+                        <!-- The button commented below is reserved for future use -->
+                        <!-- <button  ng-show="showDaysOff" ng-click="showDaysOff(employee.userId)" class="btn btn-default pull-right"
+                        type="button">
+                          <i class="glyphicon glyphicon-menu-hamburger"></i>
+                        </button> -->
+                    </div>
+                  </div>
+                  <div class="col-xs-12">
+                    <p style="padding:20px;"></p>
+                    <hr>
+                  </div>
+              </div>
+            </li>
+          </ul>
+      </div>
+    </div>

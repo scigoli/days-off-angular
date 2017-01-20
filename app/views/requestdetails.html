@@ -1,0 +1,17 @@
+<!-- This page is not actually used in the Capstone project, it is reserved for future enhancements -->
+<div class="container">
+    <div class="row row-content" ng-controller="RequestDetailController">
+      <p style="padding:20px;"></p>
+    </div>
+    <div class="row">
+      <p>HI! Here we go</p>
+    </div>
+    <span class="badge">Status:  {{request.Status}}</span></h2>
+    <p>From:{{request.From}} To:{{request.To}}</p>
+    <p>{{request.Description}}</p>
+    <p>{{request.id}}</p>
+    <button   ng-click="approveRequest(request.id)" class="btn btn-danger pull-right"
+type="button">
+     <i class="glyphicon glyphicon-ok"></i>
+   </button>
+</div>

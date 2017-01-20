@@ -1,0 +1,78 @@
+<!-- THis is the most important page, most of the user actions are expected to be done here, completing each task  with just few clicks -->
+    <div class="container">
+        <div class="row">
+          <p style="padding:20px;"></p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="index.html">Home</a></li>
+                   <li class="active">Requests</li>
+               </ul>
+            </div>
+            <div class="col-xs-10">
+               <h3>My Requests</h3>
+
+            </div>
+            <div class="col-xs-2">
+              <p style="padding:5px;"></p>
+              <button ng-click="openNewRequest()" class="btn btn-primary pull-right"
+                 type="button">
+                 New Request
+             </button>
+
+            </div>
+            <div class="col-xs-12"><hr></div>
+        </div>
+        <div class="row row-content">
+            <div class="col-xs-12" ng-if="!showMenu">
+                <h3>{{message}}</h3>
+            </div>
+            <div class="col-xs-12" ng-if="!showMenu">
+                 <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right"
+                    type="button">
+                    {{showDetails ? 'Hide Details':'Show Details'}}
+                </button>
+                 <button ng-click="toggleDelete()" class="btn btn-xs btn-primary pull-right"
+                    type="button">
+                    {{showDelete ? 'Hide Delete Button':'Show Delete Button'}}
+                </button>
+            </div>
+        </div>
+        <div class="row row-content">
+           <ul class="media-list tab-pane fade in active">
+                <li ng-repeat="request in requests | filter:{RequestedBy:filtText} | orderBy:'-SubmittedOn'" >
+                  <a ui-sref="app.requests">
+                    <div class="row row-content">
+                      <div class="col-xs-12">
+                        <h3>Requested by: {{getEmployeeName(request.RequestedBy)}}  <span class="badge">{{getStatusMessage(request.Status)}}</span></h3>
+                      </div>
+                    </div>
+                    <div class="row row-content">
+                      <div class="col-xs-8">
+                        <p>From:{{request.From| date: 'MMM. d, y'}}</p>
+                        <p>To:{{request.To| date: 'MMM. d, y'}}</p>
+                        <p>Description: {{request.Description}}</p>
+                        <p>Approved by: {{getEmployeeName(request.ApprovedBy)}}</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <button   ng-click="removeRequest(request.id)" class="btn btn-info pull-right" type="button">
+                         <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+
+                        <button   ng-click="approveDenyRequest(request.id,2)" class="btn btn-danger pull-right" type="button" ng-show="isSupervisor()">
+                         <i class="glyphicon glyphicon-thumbs-down"></i>
+                        </button>
+
+                        <button   ng-click="approveDenyRequest(request.id,1)" class="btn btn-success pull-right" type="button" ng-show="isSupervisor()">
+                         <i class="glyphicon glyphicon-thumbs-up"></i>
+                        </button>
+                    </div>
+                  </div>
+                  <div class="row row-content">
+                    <hr>
+                  </div>
+                </li>
+            </ul>
+          </div>
+        </div>
